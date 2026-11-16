@@ -38,6 +38,8 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 INSTALLED_APPS = [
     'occ_db.apps.OccDbConfig',
+    'rest_framework',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,6 +58,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# Websites allowed to call this API from a browser (CORS).
+# Origins have no path and no trailing slash.
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',          # local Vite dev server
+    'http://127.0.0.1:5173',
+    'https://ashlibel.github.io',     # deployed GitHub Pages site
 ]
 
 ROOT_URLCONF = 'mysite.urls'
