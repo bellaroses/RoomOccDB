@@ -1,5 +1,5 @@
 databases:
-  - name: mysitedb
+  - name: occ_db
     plan: free
     databaseName: mysite
     user: mysite
